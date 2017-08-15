@@ -14,7 +14,10 @@ node('master') {
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@35.177.10.23 << EOF
                 	cd app
                     export DB_HOST=mongodb://192.168.10.101/test
-                	./box_web/provision_web.sh
+
+                    berks vendor cookbooks
+                    sudo chef-client --local-mode --runlist 'recipe[node-server]'
+
                     pm2 kill
                     npm install
                     npm test'''
@@ -30,7 +33,10 @@ node('master') {
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@35.176.82.109 << EOF
 	                cd app
                     export DB_HOST=mongodb://192.168.10.101/test
-	                ./box_web/provision_web.sh
+
+                    berks vendor cookbooks
+                    sudo chef-client --local-mode --runlist 'recipe[node-server]'
+
                     npm install
                     pm2 stop app.js
                     pm2 start app.js'''
