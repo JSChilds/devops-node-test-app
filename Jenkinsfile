@@ -6,7 +6,7 @@ node('master') {
         
         stage('testing') {
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@35.177.10.23 << EOF
-            	    rm -rf app
+            	    sudo rm -rf app
                     exit'''
             
             sh "scp -r . ubuntu@35.177.10.23:/home/ubuntu/app"
@@ -25,7 +25,7 @@ node('master') {
     
         stage('production') {
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@35.176.82.109 << EOF
-	                rm -rf app
+	                sudo rm -rf app
                     exit'''
 
             sh "scp -r . ubuntu@35.176.82.109:/home/ubuntu/app"
