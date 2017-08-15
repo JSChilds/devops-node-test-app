@@ -15,7 +15,7 @@ node('master') {
                 	cd app
                     export DB_HOST=mongodb://192.168.10.101/test
 
-                    berks vendor cookbooks
+                    berks install cookbooks
                     sudo chef-client --local-mode --runlist 'recipe[node-server]'
 
                     pm2 kill
@@ -34,7 +34,7 @@ node('master') {
 	                cd app
                     export DB_HOST=mongodb://192.168.10.101/test
 
-                    berks vendor cookbooks
+                    berks install cookbooks
                     sudo chef-client --local-mode --runlist 'recipe[node-server]'
 
                     npm install
