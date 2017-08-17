@@ -11,6 +11,7 @@ node('master') {
             
             sh "scp -r . ubuntu@35.177.10.23:/home/ubuntu/app"
 
+            sh "berks update"
             sh 'knife zero bootstrap 35.177.10.23 --ssh-user ubuntu --node-name testing'
             sh 'knife zero converge "name:testing" --ssh-user ubuntu --override-runlist node-server'
                 
@@ -32,6 +33,7 @@ node('master') {
 
             sh "scp -r . ubuntu@35.176.82.109:/home/ubuntu/app"
 
+            sh "berks update"
             sh 'knife zero bootstrap 35.176.82.109 --ssh-user ubuntu --node-name production'
             sh 'knife zero converge "name:production" --ssh-user ubuntu --override-runlist node-server'
 
