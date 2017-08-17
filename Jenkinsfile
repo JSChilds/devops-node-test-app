@@ -11,7 +11,7 @@ node('master') {
             
             sh "scp -r . ubuntu@35.177.10.23:/home/ubuntu/app"
 
-            sh 'knife zero bootstrap 35.177.10.23 --ssh-user ubuntu --node-server testing'
+            sh 'knife zero bootstrap 35.177.10.23 --ssh-user ubuntu --node-name testing'
             sh 'knife zero converge "name:testing" --ssh-user ubuntu --override-runlist node-server'
                 
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@35.177.10.23 << EOF
@@ -32,7 +32,7 @@ node('master') {
 
             sh "scp -r . ubuntu@35.176.82.109:/home/ubuntu/app"
 
-            sh 'knife zero bootstrap 35.176.82.109 --ssh-user ubuntu --node-server production'
+            sh 'knife zero bootstrap 35.176.82.109 --ssh-user ubuntu --node-name production'
             sh 'knife zero converge "name:production" --ssh-user ubuntu --override-runlist node-server'
 
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@35.176.82.109 << EOF
